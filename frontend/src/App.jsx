@@ -4,6 +4,9 @@ import LoginPage from "./pages/LoginPage"
 import RoomPage from "./pages/RoomPage"
 import SignUpPage from "./pages/SignUpPage"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import UploadRoom from "./pages/UploadRoom"
+import FullGallery from "./components/FullGallary"
+import MyRooms from "./pages/MyRooms"
 
 function App() {
 
@@ -16,6 +19,9 @@ function App() {
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
                 <Route path="/room" element={<RoomPage />} />
+                <Route path="/upload-room" element={<UploadRoom />} />
+                <Route path="/full-gallery" element={<FullGallery/>} />
+                <Route path="/my-rooms" element={<MyRooms/>} />
             </Routes>
       </Router>
     </>

@@ -3,19 +3,20 @@ import mongoose from "mongoose";
 const roomSchema = new mongoose.Schema({
     title:{
         type:String,
-        required:true,
     },
     description:{
         type:String,
-        required:true,
     },
     price:{
-        type:String,
+        type:Number,
         required:true,
     },
+    area:{
+      type: Number,
+      required: true  
+    },
     location: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Location',
+        type: String,
         required: true,
     },
     images:[{
@@ -27,10 +28,10 @@ const roomSchema = new mongoose.Schema({
     },
     type:{
         type:String,
-        enum:['1BK','1BHK','2BHK','3BHK','Studio']
+        enum:['1BK','1BHK','2BHK','3BHK']
     },
     available:{
-        type:String,
+        type:Boolean,
         default:true,
     },
     owner:{
@@ -41,7 +42,33 @@ const roomSchema = new mongoose.Schema({
     ownerPhone:{
         type: Number,
         required: true
-    }
+    },
+    beds:{
+        type: Number,
+        required: true,
+    },
+    baths:{
+        type: Number,
+        required: true,
+    },
+    balcony:{
+        type: Number,
+        required: true,
+    },
+    furnished:{
+        type: String,
+        enum: ["Furnished","Unfurnished","Semi-furnished"],
+        required: true,
+    },
+    constructionAge:{
+        type: String,
+        required: true,
+    },
+    electricity:{
+        type: String,
+        enum: ["Included","Excluded"],
+        required: true,
+    },
 },{timestamps: true})
 
 const Room = mongoose.model('rooms',roomSchema);

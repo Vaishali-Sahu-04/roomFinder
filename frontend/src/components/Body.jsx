@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
 const PropertyCards = [
@@ -8,7 +8,7 @@ const PropertyCards = [
     rent: '₹10,000',
     area: '400 sqft',
     location: 'Vijay Nagar, Indore',
-    status: 'Ready to move',
+    status: 'Available for Girls',
     imgSrc: 'room.jpg',
   },
   {
@@ -75,6 +75,7 @@ const PropertyCards = [
     imgSrc: 'room.jpg',
   },
 ];
+
 
 const PropertyCard = ({ type, rent, area, location, status, imgSrc }) => (
   <div className="max-w-sm rounded overflow-hidden shadow-lg">
