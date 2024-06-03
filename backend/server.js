@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser';
+import cors from 'cors';
 
 import userRouter from './routes/user.route.js'
 import roomRouter from './routes/room.router.js'
@@ -13,8 +14,9 @@ dotenv.config();
 
 const PORT = 5000;
 
-app.use(express.urlencoded({extended: true, limit:"16kb"}));
-app.use(express.json({limit: "16kb"}));
+app.use(cors({ origin: 'http://localhost:5173' }));
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use(cookieParser())
 express.static('public')
 

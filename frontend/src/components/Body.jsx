@@ -1,102 +1,58 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
-const PropertyCards = [
-  {
-    id: 1,
-    type: '1 BHK Flat',
-    rent: '₹10,000',
-    area: '400 sqft',
-    location: 'Vijay Nagar, Indore',
-    status: 'Available for Girls',
-    imgSrc: 'room.jpg',
-  },
-  {
-    id: 2,
-    type: '2 BHK Flat',
-    rent: '₹18,500',
-    area: '1120 sqft',
-    location: 'Nipania, Indore',
-    status: 'Ready to move',
-    imgSrc: 'room.jpg',
-  },
-  {
-    id: 3,
-    type: '2 BHK Flat',
-    rent: '₹12,000',
-    area: '300 sqft',
-    location: 'Bengali Square, Indore',
-    status: 'Ready to move',
-    imgSrc: 'room.jpg',
-  },
-  {
-    id: 4,
-    type: '2 BHK Flat',
-    rent: '₹20,000',
-    area: '1100 sqft',
-    location: 'Scheme No 54, Indore',
-    status: 'Ready to move',
-    imgSrc: 'room.jpg',
-  },
-  {
-    id: 5,
-    type: '1 BHK Flat',
-    rent: '₹10,000',
-    area: '400 sqft',
-    location: 'Vijay Nagar, Indore',
-    status: 'Ready to move',
-    imgSrc: 'room.jpg',
-  },
-  {
-    id: 6,
-    type: '1 BHK Flat',
-    rent: '₹10,000',
-    area: '400 sqft',
-    location: 'Vijay Nagar, Indore',
-    status: 'Ready to move',
-    imgSrc: 'room.jpg',
-  },
-  {
-    id: 7,
-    type: '1 BHK Flat',
-    rent: '₹10,000',
-    area: '400 sqft',
-    location: 'Vijay Nagar, Indore',
-    status: 'Ready to move',
-    imgSrc: 'room.jpg',
-  },
-  {
-    id: 8,
-    type: '1 BHK Flat',
-    rent: '₹10,000',
-    area: '400 sqft',
-    location: 'Vijay Nagar, Indore',
-    status: 'Ready to move',
-    imgSrc: 'room.jpg',
-  },
-];
+// const PropertyCards = [
+//   {
+//     id: 8,
+//     type: '1 BHK Flat',
+//     rent: '₹10,000',
+//     area: '400 sqft',
+//     location: 'Vijay Nagar, Indore',
+//     availableFor: 'Girls',
+//     imgSrc: 'room.jpg',
+//   },
+// ];
 
 
-const PropertyCard = ({ type, rent, area, location, status, imgSrc }) => (
+const PropertyCard = ({ type, price, area, location, availableFor, images }) => (
   <div className="max-w-sm rounded overflow-hidden shadow-lg">
-    <img className="w-full" src={imgSrc} alt={type} />
+    <img className="w-full" src={images[0]} alt={type} />
     <div className="px-6 py-4">
       <div className=" text-xl mb-2">{type}</div>
-      <p className="text-gray-700 text-base">{rent} | {area}</p>
+      <p className="text-gray-700 text-base">₹{price}  |  {area} sqft</p>
       <p className="text-gray-700 text-base">{location}</p>
-      <p className="text-gray-700 text-base">{status}</p>
+      <p className="text-gray-700 text-base">Available for {availableFor}</p>
     </div>
   </div>
 );
 
-const Body = () => (
+const Body = () => {
+
+  const [propertyCards, setPropertyCards] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response =await axios.get(`http://localhost:5000/api/rooms`);
+        console.log("response",response.data.data);
+        setPropertyCards(response.data.data);
+      } 
+      catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    fetchData();
+  }, [])
+  return (
   <div className="container mx-auto py-4">
     <div className="grid grid-cols-1 pl-2 pr-2 md:grid-cols-4 gap-4">
-      {PropertyCards.map((card) => (
-        <Link key={card.id} to={"/room"}><PropertyCard {...card} /></Link>
+      {propertyCards.length > 0 && propertyCards.map((card) => (
+        <Link key={card._id} to={`/room/${card._id}`}><PropertyCard {...card} /></Link>
       ))}
     </div>
   </div>
 );
+}
 
 export default Body;

@@ -1,15 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import FullGallery from './FullGallary';
 
-const Gallery = () => {
+const Gallery = ({images}) => {
   const navigate = useNavigate();
-  const images = [
-    '/room.jpg',
-    '/room.jpg',
-    '/room.jpg',
-    '/room.jpg',
-  ];
+  // const images = [
+  //   '/room.jpg',
+  //   '/room.jpg',
+  //   '/room.jpg',
+  //   '/room.jpg',
+  // ];
 
   const handleViewMore = () => {
     navigate('/full-gallery', { state: { images } });

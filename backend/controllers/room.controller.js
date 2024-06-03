@@ -1,12 +1,29 @@
 import Room from "../models/room.model.js";
 import { ApiError } from "../utils/ApiError.js";
-import { ApiResponse } from "../utils/apiResponse.js";
+import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
 
-export const getAllRooms = (req, res) => {
-    res.send("Hey rooms")
-}
+export const getAllRooms = asyncHandler( async(req, res) => {
+    const allRooms = await Room.find({});
+    return res.status(200).json(
+        new ApiResponse(200, allRooms, "Rooms fetched successfully")
+    )
+})
+
+export const getRoomById = asyncHandler( async(req, res) => {
+    const {roomId} = req.params;
+    try {
+        const room =await Room.findById(roomId)
+        if(!room) throw new ApiError(400,"An error occured while fetching the room");
+
+        return res.status(200).json(
+            new ApiResponse(200, room, "Room fetched successfully")
+        )
+    } catch (error) {
+        throw new ApiError(400,error.message);
+    }
+})
 
 export const uploadRoom = asyncHandler( async (req, res) => {
     const {title,description,price,location,

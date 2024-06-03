@@ -1,7 +1,7 @@
 // components/Overview.js
 import React from 'react';
 
-const Overview = ({ carpetArea, project, floor, status, facing, age }) => {
+const Overview = ({ carpetArea, type, availableFor, status, age, electricity }) => {
   return (
     <div className="grid grid-cols-3 gap-4 mb-4">
       <div className=' w-32 text-sm'>
@@ -9,12 +9,12 @@ const Overview = ({ carpetArea, project, floor, status, facing, age }) => {
         <p>{carpetArea} sqft </p>
       </div>
       <div className=' w-32 text-sm'>
-        <p className="text-gray-500">Location</p>
-        <p>{project}</p>
+        <p className="text-gray-500">type</p>
+        <p>{type}</p>
       </div>
       <div className=' w-32 text-sm'>
         <p className="text-gray-500">Available for</p>
-        <p>Girls Only</p>
+        <p>{availableFor}</p>
       </div>
       <div className=' w-32 text-sm'>
         <p className="text-gray-500">Furnished Status</p>
@@ -26,7 +26,7 @@ const Overview = ({ carpetArea, project, floor, status, facing, age }) => {
       </div>
       <div className=' w-32 text-sm'>
         <p className="text-gray-500">Electricity Bill</p>
-        <p>Excluded</p>
+        <p>{electricity}</p>
       </div>
     </div>
   );
