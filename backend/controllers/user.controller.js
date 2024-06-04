@@ -45,13 +45,13 @@ export const login = asyncHandler( async(req, res) => {
         throw new ApiError(400, "Incorrect Password")
 
     generateTokenAndSetCookie(user._id, res);
-
     return res.status(201).json(
         new ApiResponse(200, {loggedInUser: user}, "User loggedIn successfully")
     )
 })
 export const logout = asyncHandler( async(req, res) => {
     res.cookie("jwt","")
+    console.log("res-cookie",res.cookie);
     return res.status(200).json(
         new ApiResponse(200, "User loggedout successfully")
     )

@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuthContext } from '../context/AuthContext';
+import useLogout from '../hooks/useLogout';
+
 
 const Header = () => {
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const navigate = useNavigate();
+  const {authUser}= useAuthContext();
+  const { loading, logout } = useLogout();
 
-  const handleLoginClick = () => {
-    navigate('/login');
-  };
-
-  const handleMyRoomsClick = () => {
-    navigate('/my-rooms')
-  }
 
   const fetchSuggestions = async (input) => {
     const apiKey = import.meta.env.VITE_GEOAPIFY_PLACES_API_KEY;
@@ -85,9 +83,15 @@ const Header = () => {
         </div>
       </div>
       <div className="flex items-center space-x-3">
-        <img className='w-8 h-8 inline' src="https://cdn-icons-png.flaticon.com/512/985/985709.png" alt="User Icon"/>
-        <button onClick={handleLoginClick} className="bg-gray-500 text-white px-4 py-2 rounded">Login</button>
-        <button onClick={handleMyRoomsClick} className=' px-4 py-2 rounded border bg-gray-100'>My Rooms</button>
+          <img className='w-8 h-8 inline hover:cursor-pointer'
+           src="https://cdn-icons-png.flaticon.com/512/985/985709.png" alt="User Icon"
+           onClick={!authUser ? ()=>navigate('/login') : ()=>navigate('/favourites')}
+           />
+          <button onClick={!authUser ? ()=>navigate('/login') : ()=>navigate('/my-rooms')} className=' px-4 py-2 rounded border bg-gray-100'>My Rooms</button>
+          <button onClick={!authUser ? ()=>navigate('/login') : ()=>logout()} 
+            className="bg-gray-500 text-white px-4 py-2 rounded">
+              {authUser ? "Logout" : "Login"}
+          </button>    
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useSignUp from '../hooks/useSignUp'
 
 const SignUpPage = () => {
     const [inputs, setInputs] = useState({
@@ -9,10 +10,11 @@ const SignUpPage = () => {
         email: '',
 		password: '',
 	})
-	
+	const {loading, signup} = useSignUp();
+    
 	const handleSubmit = async(e) => {
 		e.preventDefault();
-		//await signup(inputs)
+		await signup(inputs)
 	}
  	return (
         <div className='relative h-screen flex justify-center items-center' style={{ backgroundImage: `url('/room.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
@@ -35,8 +37,7 @@ const SignUpPage = () => {
                     value={inputs.email}
                     onChange={(e)=>setInputs({...inputs, email:e.target.value})}/>
 
-                    <input
-                        type='password'
+                    <input type='password'
                         placeholder='Enter Password'
                         className='w-full input bg-slate-900 text-white p-4 rounded-md mt-4 input-bordered h-10'
                             value={inputs.password}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import useLogin from '../hooks/useLogin'
 
 const LoginPage = () => {
     const [inputs, setInputs] = useState({
@@ -8,10 +9,11 @@ const LoginPage = () => {
         email: '',
 		password: '',
 	})
-	
+	const {loading, login} = useLogin();
+
 	const handleSubmit = async(e) => {
 		e.preventDefault();
-		//await signup(inputs)
+		await login(inputs)
 	}
  	return (
         <div className='relative h-screen flex justify-center items-center' style={{ backgroundImage: `url('/room.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>

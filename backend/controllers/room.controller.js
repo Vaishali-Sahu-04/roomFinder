@@ -30,10 +30,9 @@ export const uploadRoom = asyncHandler( async (req, res) => {
         availableFor,type,available,ownerPhone,area,
         beds,baths,balcony,furnished,electricity,constructionAge} = req.body;
 
-    if(!title||!description||!price||!location||!availableFor||!type||!available||
+    if(!price||!location||!availableFor||!type||!available||
         !ownerPhone||!area||!beds||!baths||!balcony||!furnished||!electricity||!constructionAge)
     throw new ApiError(400, "All fields are required")
-
 
     let images = [];
     if (req.files && req.files.length > 0) {
@@ -48,9 +47,6 @@ export const uploadRoom = asyncHandler( async (req, res) => {
 
         await Promise.all(uploadPromises); // Wait for all uploads to finish
     }
-    // if (req.files && req.files.length > 0) {
-    //     images = req.files.map(file => file.path);
-    //   }
 
     const newRoom = await Room.create({
         title,description,price,location,availableFor,type,available,
@@ -62,4 +58,18 @@ export const uploadRoom = asyncHandler( async (req, res) => {
     return res.status(200).json(
         new ApiResponse(200,{newRoom},"Room uploaded successfully")
     )
+})
+
+export const getOwnerRoom = asyncHandler( async(req ,res) => {
+    const ownerId = req.user._id;
+    try {
+        const room =await Room.find({owner: ownerId})
+        if(room.length === 0) throw new ApiError(400,"No rooms posted by the owner");
+
+        return res.status(200).json(
+            new ApiResponse(200, room, "Rooms fetched successfully")
+        )
+    } catch (error) {
+        throw new ApiError(400,error.message);
+    }
 })

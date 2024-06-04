@@ -8,11 +8,11 @@ const roomSchema = new mongoose.Schema({
         type:String,
     },
     price:{
-        type:Number,
+        type:String,
         required:true,
     },
     area:{
-      type: Number,
+      type: String,
       required: true  
     },
     location: {
@@ -21,18 +21,19 @@ const roomSchema = new mongoose.Schema({
     },
     images:[{
         type:String,
+        required:true
     }],
     availableFor:{
         type:String,
-        enum:["Girls", "Boys", "Families","anyone"]
     },
     type:{
         type:String,
-        enum:['1BK','1BHK','2BHK','3BHK']
+        required: true,
     },
     available:{
         type:Boolean,
         default:true,
+        required:true,
     },
     owner:{
         type:mongoose.Schema.Types.ObjectId,
@@ -40,7 +41,7 @@ const roomSchema = new mongoose.Schema({
         required:true,
     },
     ownerPhone:{
-        type: Number,
+        type: String,
         required: true
     },
     beds:{
@@ -57,7 +58,6 @@ const roomSchema = new mongoose.Schema({
     },
     furnished:{
         type: String,
-        enum: ["Furnished","Unfurnished","Semi-furnished"],
         required: true,
     },
     constructionAge:{
@@ -66,7 +66,6 @@ const roomSchema = new mongoose.Schema({
     },
     electricity:{
         type: String,
-        enum: ["Included","Excluded"],
         required: true,
     },
 },{timestamps: true})

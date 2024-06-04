@@ -11,6 +11,14 @@ const reviewSchema = new mongoose.Schema({
     ref: 'User',
     required: true,
   },
+  userFullName: {
+    type:String,
+    required: true
+  },
+  role: {
+    type: String,
+    required: true,
+  },
   rating: {
     type: Number,
     min: 1,

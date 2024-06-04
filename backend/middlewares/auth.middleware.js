@@ -4,26 +4,25 @@ import User from '../models/user.model.js';
 
 const JWTVerify = async (req, res, next) => {
     try {
-        const token = req.cookies.jwt;
-
-        if (!token) {
-            throw new ApiError(401, 'Unauthorized: No token provided');
+        console.log("req.cookies in jwtverify ",req?.cookies?.jwt);
+        const token = req?.cookies?.jwt;
+        if(!token){
+            throw new ApiError(400,"Unauthorized - No token provided");
         }
-        const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-        const user = await User.findById(decodedToken.userId);
+        const decoded = jwt.verify(token,process.env.JWT_SECRET);
 
-        if (!user) {
-            throw new ApiError(401, 'Unauthorized: User not found');
-        }
+        if(!decoded) throw new ApiError(400,"Unauthorized - Invalid token");
+       
+        const user = await User.findById(decoded.userId).select("-password");
+
+        if(!user) throw new ApiError(400,"User not found");
+
         req.user = user;
         next();
-    } 
-    catch (error) {
-        if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-            throw new ApiError(401, 'Unauthorized: Invalid or expired token');
-        } else {
-            next(error); // Pass other errors to the error handler middleware
-        }
+
+    } catch (error) {
+        console.log('Error in JWTVerify middleware',error.message);
+        throw new ApiError(500,"Internal Server Error");
     }
 };
 
