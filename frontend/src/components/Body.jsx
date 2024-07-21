@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import PropertyCard from './PropertyCard';
+import { useAuthContext } from "../context/AuthContext";
 
 // const PropertyCards = [
 //   {
@@ -14,28 +16,17 @@ import axios from 'axios'
 //   },
 // ];
 
-
-const PropertyCard = ({ type, price, area, location, availableFor, images }) => (
-  <div className="max-w-sm rounded overflow-hidden shadow-lg">
-    <img className="w-full" src={images[0]} alt={type} />
-    <div className="px-6 py-4">
-      <div className=" text-xl mb-2">{type}</div>
-      <p className="text-gray-700 text-base">₹{price}  |  {area} sqft</p>
-      <p className="text-gray-700 text-base">{location}</p>
-      <p className="text-gray-700 text-base">Available for {availableFor}</p>
-    </div>
-  </div>
-);
-
 const Body = () => {
 
   const [propertyCards, setPropertyCards] = useState([]);
+  const {authUser} = useAuthContext();
 
   useEffect(() => {
+    console.log("authUser-> ",authUser);
     async function fetchData() {
       try {
         const response =await axios.get(`http://localhost:5000/api/rooms`);
-        console.log("response",response.data.data);
+        //console.log("response",response.data.data);
         setPropertyCards(response.data.data);
       } 
       catch (error) {
@@ -44,11 +35,14 @@ const Body = () => {
     }
     fetchData();
   }, [])
+
   return (
   <div className="container mx-auto py-4">
     <div className="grid grid-cols-1 pl-2 pr-2 md:grid-cols-4 gap-4">
       {propertyCards.length > 0 && propertyCards.map((card) => (
-        <Link key={card._id} to={`/room/${card._id}`}><PropertyCard {...card} /></Link>
+        <Link key={card._id} to={`/room/${card._id}`}>
+          <PropertyCard {...card} initialFavourite={authUser && authUser.loggedInUser.favourites.includes(card._id)} />
+        </Link>
       ))}
     </div>
   </div>

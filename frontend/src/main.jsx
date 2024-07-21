@@ -7,7 +7,7 @@ import Body from './components/Body.jsx'
 import SignUpPage from './pages/SignUpPage.jsx'
 import { AuthContextProvider } from './context/AuthContext.jsx'
 
-const  appRouter = createBrowserRouter([
+const appRouter = createBrowserRouter([
   {
     path: '/',
     element: <App/>,

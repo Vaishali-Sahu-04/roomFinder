@@ -17,12 +17,10 @@ const UserSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    favourites:[
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Favourite'
-        }
-    ]
+    favourites:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Room'  // Reference to the Room model
+    }]
 })
 
 const User = mongoose.model("User",UserSchema)

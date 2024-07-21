@@ -28,7 +28,7 @@ const useLogin = () => {
                 withCredentials: true
 			}
             );
-			console.log(response.data.data);
+			//console.log(response.data.data);
 			const data = response.data.data;
 			if (data.error) {
 				throw new ApiError(400, data.error);

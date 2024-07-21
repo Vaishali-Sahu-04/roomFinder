@@ -20,7 +20,7 @@ const Reviews = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const response = axios.post(`http://localhost:5000/api/reviews/add-review/${roomId}`, newReview)
-        if(response.status === 200) console.log("Review submitted");
+        //if(response.status === 200) console.log("Review submitted");
         console.log(response);
         //setReviews()
     }

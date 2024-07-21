@@ -5,7 +5,6 @@ import cors from 'cors';
 
 import userRouter from './routes/user.route.js'
 import roomRouter from './routes/room.router.js'
-import favouriteRouter from './routes/favourite.route.js'
 import reviewRouter from './routes/review.route.js'
 
 import { connect } from './db/connect.js';
@@ -33,7 +32,6 @@ app.get("/", (req,res)=>{
 })
 app.use("/api/users",userRouter);
 app.use("/api/rooms",roomRouter);
-app.use("/api/favourites",favouriteRouter);
 app.use("/api/reviews",reviewRouter);
 
 connect();
