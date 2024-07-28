@@ -27,7 +27,7 @@ export const signup = asyncHandler( async (req, res) => {
         generateTokenAndSetCookie(newUser._id, res);
         await newUser.save();
         return res.status(200).json(
-            new ApiResponse(200, newUser, "User account created successfully"))
+            new ApiResponse(200, {loggedInUser: newUser}, "User account created successfully"))
     }
 )
 export const login = asyncHandler( async(req, res) => {
@@ -72,7 +72,7 @@ export const addRoomToFavourite = asyncHandler( async(req, res) => {
     }
     
     return res.status(200).json(
-        new ApiResponse(200, user, "User account created successfully"))
+        new ApiResponse(200, {loggedInUser: user}, "User account created successfully"))
 })
 export const removeFavourite = asyncHandler( async(req, res) => {
     const userId = req.user._id; // Assuming you have user authentication middleware that populates req.user
@@ -91,6 +91,27 @@ export const removeFavourite = asyncHandler( async(req, res) => {
     user.favourites = user.favourites.filter(fav => fav.toString() !== roomId.toString());
     await user.save();
 
-    return res.status(200).json(new ApiResponse(200, user, "Favourite removed successfully"));
+    return res.status(200).json(new ApiResponse(200, {loggedInUser: user}, "Favourite removed successfully"));
 })
+export const getFavoriteRooms = asyncHandler( async(req, res) => {
+    
+    const user = await User.findById(req.user._id).exec();
 
+    if (!user) {
+        throw new ApiError(400, "User not found");
+    }
+    const favouriteRoomIds = user.favourites;
+    
+    if (favouriteRoomIds.length === 0) {
+        return res.status(200).json(
+            new ApiResponse(200, [], "No rooms in favourites")
+        )
+    }
+    
+    // Fetch room details for the favourite room IDs
+    const rooms = await Room.find({ _id: { $in: favouriteRoomIds } }).exec();
+
+    return res.status(200).json(
+        new ApiResponse(200, rooms, "Rooms fetched successfully")
+    )
+})

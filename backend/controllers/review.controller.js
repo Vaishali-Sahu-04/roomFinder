@@ -30,8 +30,9 @@ export const addReview = asyncHandler( async(req, res) => {
         comment,
         rating
     })
+    /*console.log("newreview ",newReview);*/
     await newReview.save();
     return res.status(200).json(
-        new ApiResponse(200, {newReview}, "Review added successfully")
+        new ApiResponse(200, newReview, "Review added successfully")
     )
 })

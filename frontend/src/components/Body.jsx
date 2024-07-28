@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
 import axios from 'axios'
-import PropertyCard from './PropertyCard';
+import RenderAllRooms from './RenderAllRooms';
 import { useAuthContext } from "../context/AuthContext";
 
 // const PropertyCards = [
@@ -34,17 +33,20 @@ const Body = () => {
       }
     }
     fetchData();
-  }, [])
+  }, [authUser])
 
   return (
-  <div className="container mx-auto py-4">
-    <div className="grid grid-cols-1 pl-2 pr-2 md:grid-cols-4 gap-4">
-      {propertyCards.length > 0 && propertyCards.map((card) => (
-        <Link key={card._id} to={`/room/${card._id}`}>
-          <PropertyCard {...card} initialFavourite={authUser && authUser.loggedInUser.favourites.includes(card._id)} />
-        </Link>
-      ))}
-    </div>
+  // <div className="container mx-auto py-4">
+  //   <div className="grid grid-cols-1 pl-2 pr-2 md:grid-cols-4 gap-4">
+  //     {propertyCards.length > 0 && propertyCards.map((card) => (
+  //       <Link key={card._id} to={`/room/${card._id}`}>
+  //         <PropertyCard {...card} initialFavourite={authUser && authUser.loggedInUser.favourites.includes(card._id)} />
+  //       </Link>
+  //     ))}
+  //   </div>
+  // </div>
+  <div>
+    <RenderAllRooms propertyCards={propertyCards} authUser={authUser}/>
   </div>
 );
 }

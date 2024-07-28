@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import toast from 'react-hot-toast';
+import { useAuthContext } from "../context/AuthContext";
 import { useParams } from 'react-router-dom';
 
 const Reviews = () => {
@@ -7,6 +9,7 @@ const Reviews = () => {
     const [reviews, setReviews] = useState([]);
     const [showForm, setShowForm] = useState(false);
     const [newReview, setNewReview] = useState({ role: '', comment: '', rating: ''});
+    const {authUser} = useAuthContext();
 
     useEffect(() => {
       async function fetchReviews(){
@@ -15,14 +18,25 @@ const Reviews = () => {
         setReviews(response.data.data);
       }
       fetchReviews();
-    },[])
+    },[reviews])
 
-    const handleSubmit = (e) => {
+    const check = () => {
+      if(!authUser) toast.error("Please login to write a review")
+      else setShowForm(true);
+    }
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const response = axios.post(`http://localhost:5000/api/reviews/add-review/${roomId}`, newReview)
+        const response = await axios.post(`http://localhost:5000/api/reviews/add-review/${roomId}`, newReview, 
+          {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          })
         //if(response.status === 200) console.log("Review submitted");
-        console.log(response);
-        //setReviews()
+        console.log(response.data.data);
+        setShowForm(false);
+        setReviews(response.data.data)
     }
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -33,7 +47,7 @@ const Reviews = () => {
     <div className='border border-gray-500 p-4 rounded-md w-8/12'>
         <h1 className='font-semibold font-serif text-2xl'>Reviews and Ratings</h1>
         <button className='py-1 border bg-slate-800 text-white px-3  mt-4 rounded-md text-slate-800'
-            onClick={() => setShowForm(true)}>
+            onClick={() => check()}>
             Write a Review
         </button>
         {showForm && (
@@ -41,13 +55,13 @@ const Reviews = () => {
             <form onSubmit={handleSubmit}>
               <div className='mb-2'>
                 <label className='block font-semibold'>Role:</label>
-                <select id="property-type" name="property-type" 
+                <select id="property-type" name="role" value={newReview.role} onChange={handleInputChange}
                 className="border border-gray-300 rounded-lg text-sm text-gray-700 p-1 bg-white">
-                  <option value="owner">I own a property here</option>
-                  <option value="live">I currenlt/used to live here</option>
-                  <option value="local-agent">I am a local agent</option>
-                  <option value="visiter">I visited the project</option>
-                  <option value="other">Other</option>
+                  <option value="I own a property here">I own a property here</option>
+                  <option value="I currenlt/used to live here">I currenlt/used to live here</option>
+                  <option value="I am a local agent">I am a local agent</option>
+                  <option value="I visited the project">I visited the project</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
               <div className='mb-2'>

@@ -8,7 +8,7 @@ import UploadRoom from "./pages/UploadRoom"
 import FullGallery from "./components/FullGallary"
 import MyRooms from "./pages/MyRooms"
 import { Toaster } from "react-hot-toast"
-import Favoirites from "./pages/Favoirites"
+import Favourites from "./pages/Favourites"
 
 function App() {
 
@@ -23,7 +23,7 @@ function App() {
             <Route path="/upload-room" element={<UploadRoom />} />
             <Route path="/full-gallery" element={<FullGallery/>} />
             <Route path="/my-rooms" element={<MyRooms/>} />
-            <Route path="/favourites" element={<Favoirites/>} />
+            <Route path="/favourites" element={<Favourites/>} />
         </Routes>
       <Toaster/>
     </>

@@ -18,8 +18,8 @@ app.use(cors({
      origin: 'http://localhost:5173',
      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
      credentials: true, // if you need to handle cookies
-     allowedHeaders: 'Content-Type,Authorization',
-}));
+     allowedHeaders: 'Content-Type,Authorization',}
+));
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());

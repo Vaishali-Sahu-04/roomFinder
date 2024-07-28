@@ -5,15 +5,15 @@ import { useAuthContext } from "../context/AuthContext";
 
 const PropertyCard = ({ type, price, area, location, availableFor, images, _id, initialFavourite }) => {
 
-    const {authUser}= useAuthContext();
-    console.log("isFavourite ",initialFavourite)
+    const {authUser, setAuthUser}= useAuthContext();
+    //console.log("isFavourite ",initialFavourite)
     const [isFavourite, setIsFavourite] = useState(initialFavourite);
     const toggleFavorite = async (e) => {
         e.preventDefault();
-        console.log(_id);
+        //console.log(_id);
         try {
           if (!isFavourite) {
-             await axios.post('http://localhost:5000/api/users/addRoomToFavorite', { roomId: _id },
+            const res = await axios.post('http://localhost:5000/api/users/addRoomToFavorite', { roomId: _id },
                 {
                     withCredentials: true,
                     headers: {
@@ -21,11 +21,15 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
                     }
             });
             toast.success("Room added into the favorites")
+            const user = res.data.data;
+            //console.log("user ",user);
+            setAuthUser(user);
+            localStorage.setItem("room-user", JSON.stringify(user));
             setIsFavourite(true)
           } 
           else {
-            console.log("Else part in toggling favourite")
-             await axios.post(`http://localhost:5000/api/users/removeFavorite`,{ roomId: _id },
+            //console.log("Else part in toggling favourite")
+            const res = await axios.post(`http://localhost:5000/api/users/removeFavorite`,{ roomId: _id },
             {
                 withCredentials: true,
                 headers: {
@@ -33,6 +37,9 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
                 }
             });
             toast.success("Room removed from the favorites")
+            setAuthUser(res.data.data);
+            localStorage.setItem("room-user", JSON.stringify(res.data.data));
+            //console.log("user ",res.data.data);
             setIsFavourite(false)
           }
         } 

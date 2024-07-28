@@ -25,7 +25,7 @@ const useSignUp = () => {
             }, {
                 headers: { "Content-Type": "application/json" }
             });
-            const data = res.data;
+            const data = res.data.data;
             if (data.error) throw new ApiError(400, data.error);
 
             localStorage.setItem("room-user", JSON.stringify(data));
