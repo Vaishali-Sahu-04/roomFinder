@@ -4,7 +4,7 @@ import User from '../models/user.model.js';
 
 const JWTVerify = async (req, res, next) => {
     try {
-        console.log("req.cookies in jwtverify  ",req?.cookies?.jwt);
+        //console.log("req.cookies in jwtverify  ",req?.cookies?.jwt);
         const token = req?.cookies?.jwt;
         if(!token){
             throw new ApiError(400,"Unauthorized - No token provided");

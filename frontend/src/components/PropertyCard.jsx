@@ -51,19 +51,19 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
 
     return(
         <div className="max-w-sm w-80 rounded overflow-hidden shadow-lg">
-        <img className="w-full h-60" src={images[0]} alt={type} />
-        <div className="px-6 py-4">
-            <div className=" flex justify-between text-xl mb-2">
-            {type}
-            {authUser && <button onClick={toggleFavorite}
-                 className=" text-xs bg-purple-300 px-2 font-serif py-1 rounded-xl">
-                {!isFavourite ? 'AddToFavorite' : 'RemoveFavorite'}
-            </button>}
+            <img className="w-full h-60" src={images[0]} alt={type} />
+            <div className="px-6 py-4">
+                <div className=" flex justify-between text-xl mb-2">
+                {type}
+                {authUser && <button onClick={toggleFavorite}
+                    className=" text-xs bg-purple-300 px-2 font-serif py-1 rounded-xl">
+                    {!isFavourite ? 'AddToFavorite' : 'RemoveFavorite'}
+                </button>}
+                </div>
+                <p className="text-gray-700 text-base">₹{price}  |  {area}</p>
+                <p className="text-gray-700 text-base">{location}</p>
+                <p className="text-gray-700 text-base">Available for {availableFor}</p>
             </div>
-            <p className="text-gray-700 text-base">₹{price}  |  {area} sqft</p>
-            <p className="text-gray-700 text-base">{location}</p>
-            <p className="text-gray-700 text-base">Available for {availableFor}</p>
-        </div>
         </div>
     )
 };

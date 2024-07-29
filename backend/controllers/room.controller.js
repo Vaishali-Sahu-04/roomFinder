@@ -3,6 +3,8 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { uploadOnCloudinary } from '../utils/cloudinary.js';
+import User from "../models/user.model.js";
+
 
 export const getAllRooms = asyncHandler( async(req, res) => {
     const allRooms = await Room.find({});
@@ -64,10 +66,26 @@ export const getOwnerRoom = asyncHandler( async(req ,res) => {
     const ownerId = req.user._id;
     try {
         const room =await Room.find({owner: ownerId})
-        if(room.length === 0) throw new ApiError(400,"No rooms posted by the owner");
-
+        
         return res.status(200).json(
             new ApiResponse(200, room, "Rooms fetched successfully")
+        )
+    } catch (error) {
+        throw new ApiError(400,error.message);
+    }
+})
+
+export const deleteRoom = asyncHandler( async(req, res) => {
+    const {roomId} = req.params;
+    //console.log("Roomdelete")
+    try {
+        await Room.findByIdAndDelete(roomId);
+        await User.updateMany(
+            { favourites: roomId },
+            { $pull: { favourites: roomId } }
+        );
+        return res.status(200).json(
+            new ApiResponse(200, "Room deleted successfully")
         )
     } catch (error) {
         throw new ApiError(400,error.message);

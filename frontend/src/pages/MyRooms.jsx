@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
+import MyRoomCard from '../components/MyRoomCard';
 
 // const PropertyCards = [
 //     {
@@ -29,17 +30,24 @@ const MyRooms = () => {
     const navigate = useNavigate();
 
     const [propertyCards, setPropertyCards] = useState([]);
+    const [refresh, setRefresh] = useState(false);
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //   async function fetchMyRooms(){
-    //     const response = await axios.get("http://localhost:5000/api/rooms/owner-room");
-    //     const data=response.data.data;
-    //     console.log(data);
-    //     setPropertyCards(data);
-    //   }
-    //   fetchMyRooms();
-    // },[])
+      async function fetchMyRooms(){
+        const response = await axios.get("http://localhost:5000/api/rooms/owner-room",
+          {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+          });
+          //console.log(response.data.data);
+         const data=response.data.data;
+         setPropertyCards(data);
+      }
+      fetchMyRooms();
+    },[refresh])
    
   return (
     <div className=' mt-4 p-4'>
@@ -48,7 +56,7 @@ const MyRooms = () => {
       <div className="container mx-auto py-4">
         <div className="grid grid-cols-1 pr-2 md:grid-cols-4 gap-4">
         {propertyCards.length>0 && propertyCards.map((card) => (
-            <Link key={card.id} to={"/room"}><PropertyCard {...card} /></Link>
+            <Link key={card.id} to={`/room/${card._id}`}><MyRoomCard {...card} setRefresh={setRefresh} /></Link>
         ))}
         </div>
        </div>
