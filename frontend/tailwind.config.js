@@ -8,9 +8,9 @@ export default {
     extend: {
       colors: {
         'mid-bg': '#dcdcdc', // Light gray background
-        'mid-text': '#333333', // Dark gray text
-        'mid-border': '#dddddd', // Light gray border
-        'mid-accent': '#007acc', // A neutral accent color
+        // 'mid-text': '#333333', // Dark gray text
+        // 'mid-border': '#dddddd', // Light gray border
+        // 'mid-accent': '#007acc', // A neutral accent color
       },
     },
   },

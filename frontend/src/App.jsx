@@ -13,7 +13,7 @@ import Favourites from "./pages/Favourites"
 function App() {
 
   return (
-    <div className="bg-mid-bg text-mid-text min-h-screen">
+    <div className="">
         <Header />
         <Routes>
             <Route path="/" element={<Body />} />
