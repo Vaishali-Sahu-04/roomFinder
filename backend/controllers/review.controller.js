@@ -19,6 +19,8 @@ export const addReview = asyncHandler( async(req, res) => {
     const {role, rating, comment} = req.body;
     const userId = req.user._id;
     
+    //console.log("role ",role, "rating", rating, "comment",comment);
+
     if(!role || !rating || !comment)
     throw new ApiError(400,"All fields are required");
 

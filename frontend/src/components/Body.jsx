@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios'
 import RenderAllRooms from './RenderAllRooms';
 import { useAuthContext } from "../context/AuthContext";
-
+import { useLocation } from 'react-router-dom';
 // const PropertyCards = [
 //   {
 //     id: 8,
@@ -19,12 +19,20 @@ const Body = () => {
 
   const [propertyCards, setPropertyCards] = useState([]);
   const {authUser} = useAuthContext();
+  const location = useLocation();
 
   useEffect(() => {
     console.log("authUser-> ",authUser);
     async function fetchData() {
       try {
-        const response =await axios.get(`http://localhost:5000/api/rooms`);
+        const queryParams = new URLSearchParams(location.search);
+        const searchQuery = queryParams.get('search') || '';
+        
+        const endpoint = searchQuery 
+          ? `http://localhost:5000/api/rooms/search?query=${searchQuery}` 
+          : `http://localhost:5000/api/rooms`;
+
+        const response =await axios.get(endpoint);
         //console.log("response",response.data.data);
         setPropertyCards(response.data.data);
       } 
@@ -33,7 +41,7 @@ const Body = () => {
       }
     }
     fetchData();
-  }, [authUser])
+  }, [authUser, location.search])
 
   return (
   <div>

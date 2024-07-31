@@ -8,10 +8,10 @@ const useUploadRoom = () => {
     const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
 
-    const uploadRoom = async({price, location, availableFor, type, available, ownerPhone, area,
+    const uploadRoom = async({price, location, city, availableFor, type, available, ownerPhone, ownerMail, area,
         beds, baths, balcony, furnished, electricity, constructionAge,images}) => {
 
-        const success = handleInputErrors({price, location, availableFor, type, available, ownerPhone, area,
+        const success = handleInputErrors({price, location, city, availableFor, type, available, ownerPhone, area,
             beds, baths, balcony, furnished, electricity, constructionAge, images});
 		if (!success) return;
 		setLoading(true);
@@ -21,10 +21,12 @@ const useUploadRoom = () => {
 		// Append regular form fields
 		formData.append('price', price);
 		formData.append('location', location);
+		formData.append('city', city);
 		formData.append('availableFor', availableFor);
 		formData.append('type', type);
 		formData.append('available', available);
 		formData.append('ownerPhone', ownerPhone);
+		formData.append('ownerMail', ownerMail);
 		formData.append('area', area);
 		formData.append('beds', beds);
 		formData.append('baths', baths);
@@ -48,7 +50,7 @@ const useUploadRoom = () => {
 				}
 			} );
 
-			console.log(response.data.data);
+			//console.log(response.data.data);
 			const data = response.data.data;
 			if (data.error) {
 				throw new ApiError(400, data.error);
@@ -68,23 +70,10 @@ const useUploadRoom = () => {
 
 export default useUploadRoom;
 
-function handleInputErrors({price, location, availableFor, type, available, ownerPhone, area,
+function handleInputErrors({price, location, city, availableFor, type, available, ownerPhone, area,
     beds, baths, balcony, furnished, electricity, constructionAge,images}) {
-        console.log("Price:", price);
-        console.log("Location:", location);
-        console.log("Available For:", availableFor);
-        console.log("Type:", type);
-        console.log("Available:", available);
-        console.log("Owner Phone:", ownerPhone);
-        console.log("Area:", area);
-        console.log("Beds:", beds);
-        console.log("Baths:", baths);
-        console.log("Balcony:", balcony);
-        console.log("Furnished:", furnished);
-        console.log("Electricity:", electricity);
-        console.log("Construction Age:", constructionAge);
-		console.log("Images:", images);
-	if (!price || !location || !availableFor || !type || !available || !ownerPhone || !area ||
+		
+	if (!price || !location || !city || !availableFor || !type || !available || !ownerPhone || !area ||
             !beds || !baths || !balcony || !furnished || !electricity || !constructionAge || !images) {
 		toast.error("Please fill in all fields");
 		return false;

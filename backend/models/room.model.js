@@ -19,6 +19,10 @@ const roomSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    city:{
+        type: String,
+        required: true,
+    },
     images:[{
         type:String,
         required:true
@@ -43,6 +47,9 @@ const roomSchema = new mongoose.Schema({
     ownerPhone:{
         type: String,
         required: true
+    },
+    ownerMail:{
+        type: String,
     },
     beds:{
         type: Number,

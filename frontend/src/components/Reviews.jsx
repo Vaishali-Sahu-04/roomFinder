@@ -8,7 +8,7 @@ const Reviews = () => {
     const {roomId} = useParams();
     const [reviews, setReviews] = useState([]);
     const [showForm, setShowForm] = useState(false);
-    const [newReview, setNewReview] = useState({ role: '', comment: '', rating: ''});
+    const [newReview, setNewReview] = useState({ role: 'I own a property here', comment: '', rating: '1'});
     const {authUser} = useAuthContext();
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Reviews = () => {
             }
           })
         //if(response.status === 200) console.log("Review submitted");
-        console.log(response.data.data);
+        //console.log(response.data.data);
         setShowForm(false);
         setReviews(response.data.data)
     }

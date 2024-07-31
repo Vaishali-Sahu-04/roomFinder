@@ -45,6 +45,7 @@ const RoomPage = () => {
         }
         const data = await response.json();
         setPropertyData(data.data); // Adjust according to your API response structure
+        console.log(data.data)
         setLoading(false);
       } catch (error) {
         console.error('Error in fetching room data:',error.message);
@@ -64,7 +65,7 @@ const RoomPage = () => {
   return (
     <div className="container mt-5 px-4 flex flex-col items-center justify-center gap-4">
         <div className='border border-gray-500 font-serif p-4 rounded-md w-8/12'>
-            <RoomHeader price={propertyData.price} address={propertyData.location} />
+            <RoomHeader price={propertyData.price} location={propertyData.location} city={propertyData.city} />
             <div className='flex gap-6'>
                 <Gallery images={propertyData.images} />
                 <div>
@@ -84,7 +85,10 @@ const RoomPage = () => {
                     />
                 </div>
             </div>
-            <Actions />
+            <Actions phone={propertyData.ownerPhone} 
+                      email={propertyData.ownerMail} 
+                      available={propertyData.available}
+            />
         </div>
         <Reviews/>
     </div>

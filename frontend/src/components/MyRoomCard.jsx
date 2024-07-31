@@ -9,7 +9,7 @@ const MyRoomCard = ({ type, price, area, location, availableFor, images, _id, se
     console.log("response");
     try {
       const response = await axios.get(`http://localhost:5000/api/rooms/deleteRoom/${_id}`)
-      console.log("response");
+      //console.log("response");
       if(response.status === 200) 
       {
         toast.success("Room deleted successfully");

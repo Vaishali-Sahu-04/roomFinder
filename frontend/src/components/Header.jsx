@@ -31,9 +31,9 @@ const Header = () => {
 
   const handleSearch = () => {
     // Implement search functionality here based on the query
-    console.log('Searching for:', query);
+    //console.log('Searching for:', query);
     // For example, you can navigate to a search results page passing the query as a parameter
-    navigate(`/search?q=${encodeURIComponent(query)}`);
+    navigate(`/?search=${encodeURIComponent(query)}`);
     setQuery('');
     setSuggestions([]);
   };
@@ -53,6 +53,11 @@ const Header = () => {
       handleSearch();
     }
   };
+  const handleSuggestionClick = (suggestion) => {
+    // Set the query state and then trigger the search
+    setQuery(suggestion);
+    handleSearch(suggestion);
+  };
 
   return (
     <div className="flex items-center justify-between p-4">
@@ -68,13 +73,13 @@ const Header = () => {
             placeholder="Search for location"
             value={query}
             onChange={handleChange}
-            onKeyPress={handleKeyPress} // Handle Enter key press
-            className="border border-gray-500 p-1 rounded-sm w-80" 
+            onKeyDown={handleKeyPress} // Handle Enter key press
+            className="border border-gray-500 bg-slate-100 p-2 rounded-3xl w-80" 
           />
           {suggestions.length > 0 && (
-            <ul className="absolute bg-white border border-gray-500 mt-1 w-80 max-h-60 overflow-y-auto z-10">
+            <ul className="absolute bg-slate-100 border border-gray-500 rounded-3xl mt-1 w-80 max-h-60 overflow-y-auto z-10">
               {suggestions.map((suggestion, index) => (
-                <li key={index} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={() => setQuery(suggestion.properties.formatted)}>
+                <li key={index} className="p-2 hover:bg-gray-200 cursor-pointer" onClick={() =>  handleSuggestionClick(suggestion.properties.formatted)}>
                   {suggestion.properties.formatted}
                 </li>
               ))}

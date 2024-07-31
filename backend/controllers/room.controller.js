@@ -28,11 +28,11 @@ export const getRoomById = asyncHandler( async(req, res) => {
 })
 
 export const uploadRoom = asyncHandler( async (req, res) => {
-    const {title,description,price,location,
-        availableFor,type,available,ownerPhone,area,
+    const {title,description,price,location,city,
+        availableFor,type,available,ownerPhone,ownerMail,area,
         beds,baths,balcony,furnished,electricity,constructionAge} = req.body;
 
-    if(!price||!location||!availableFor||!type||!available||
+    if(!price||!location||!availableFor||!type||!available||!city||
         !ownerPhone||!area||!beds||!baths||!balcony||!furnished||!electricity||!constructionAge)
     throw new ApiError(400, "All fields are required")
 
@@ -51,9 +51,9 @@ export const uploadRoom = asyncHandler( async (req, res) => {
     }
 
     const newRoom = await Room.create({
-        title,description,price,location,availableFor,type,available,
+        title,description,price,location,city,availableFor,type,available,
         owner:req.user._id,
-        ownerPhone,area,images,beds,baths,balcony,furnished,electricity,constructionAge
+        ownerPhone,ownerMail,area,images,beds,baths,balcony,furnished,electricity,constructionAge
     })
     await newRoom.save();
 
@@ -90,4 +90,25 @@ export const deleteRoom = asyncHandler( async(req, res) => {
     } catch (error) {
         throw new ApiError(400,error.message);
     }
+})
+
+export const getSearchedRoom = asyncHandler( async(req, res) => {
+    const query = req.query.query;
+    const searchWords = query.split(',').map(word => word.trim());
+    const searchRegexes = searchWords.map(word => new RegExp(word, 'i')); // 'i' for case-insensitive
+
+    const rooms = await Room.find({
+      $or: [
+        {
+          location: {
+            $in: searchRegexes
+          }
+        },
+        ...searchRegexes.map(regex => ({ city: regex }))
+      ]
+    });
+
+    return res.status(200).json(
+        new ApiResponse(200, rooms, "Rooms fetched successfully")
+    )
 })

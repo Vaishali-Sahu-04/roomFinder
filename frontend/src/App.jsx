@@ -13,7 +13,7 @@ import Favourites from "./pages/Favourites"
 function App() {
 
   return (
-    <>
+    <div className="bg-mid-bg text-mid-text min-h-screen">
         <Header />
         <Routes>
             <Route path="/" element={<Body />} />
@@ -26,7 +26,7 @@ function App() {
             <Route path="/favourites" element={<Favourites/>} />
         </Routes>
       <Toaster/>
-    </>
+    </div>
   )
 }
 

@@ -5,8 +5,8 @@ import useUploadRoom from '../hooks/useUploadRoom'
 const UploadRoom = () => {
 
   const [inputs, setInputs] = useState({
-    price:'', location:'', availableFor:'', type:'', available:'', ownerPhone:'', area:'',
-      beds:'1', baths:'1', balcony:'1', furnished:'', electricity:'', constructionAge:'',images:[]
+    price:'', location:'', city:'', availableFor:'', type:'', available:'', ownerPhone:'', ownerMail:'', 
+    area:'', beds:'1', baths:'1', balcony:'0', furnished:'', electricity:'', constructionAge:'',images:[]
   })
   const {loading, uploadRoom} = useUploadRoom();
 
@@ -35,18 +35,20 @@ const UploadRoom = () => {
         <div className=' mt-10 flex flex-col'>
             <h1 className=' font-medium'>Property Location</h1>
             <div className=' flex flex-col gap-1 mt-2 text-sm'>
-              <label htmlFor="city">City</label>
-              <input className=' outline-none border-none border-b'
-              value={inputs.location}
-              onChange={(e) => setInputs({ ...inputs, location: e.target.value })}
-              placeholder='Enter city' type="text" />
-              <div className=' border-b'></div>
+                <label htmlFor="city">City</label>
+                <input className=' outline-none border-none border-b'
+                value={inputs.city}
+                onChange={(e) => setInputs({ ...inputs, city: e.target.value })}
+                placeholder='Enter city' type="text" />
+                <div className=' border-b'></div>
             </div>
             <div className=' flex flex-col gap-1 mt-2 text-sm'>
-              <label htmlFor="city">Locality</label>
-              <input className=' outline-none border-none border-b'
-              placeholder='Enter locality' type="text" />
-              <div className=' border-b'></div>
+                <label htmlFor="location">Locality</label>
+                <input className=' outline-none border-none border-b'
+                value={inputs.location}
+                onChange={(e) => setInputs({ ...inputs, location: e.target.value })}
+                placeholder='Enter locality' type="text" />
+                <div className=' border-b'></div>
             </div>
         </div>
         {/* propert-features */}
@@ -80,6 +82,7 @@ const UploadRoom = () => {
               value={inputs.balcony}
               onChange={(e) => setInputs({ ...inputs, balcony: e.target.value})}
               className="border border-gray-300 outline-none rounded-lg bg-white">
+                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -320,6 +323,15 @@ const UploadRoom = () => {
             type="text"
             value={inputs.ownerPhone}
             onChange={(e) => setInputs({ ...inputs, ownerPhone: e.target.value })}
+          />
+          <div className='border-b'></div>
+          <label className='text-gray-700 text-sm mt-4 font-bold mb-1' htmlFor="email">Email</label>
+          <input 
+            className='outline-none border-none border-b text-sm'
+            placeholder='Enter your Email'
+            type="text"
+            value={inputs.ownerMail}
+            onChange={(e) => setInputs({ ...inputs, ownerMail: e.target.value })}
           />
           <div className='border-b'></div>
         </div>
