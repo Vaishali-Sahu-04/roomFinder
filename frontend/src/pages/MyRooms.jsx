@@ -35,7 +35,7 @@ const MyRooms = () => {
     useEffect(()=>{
 
       async function fetchMyRooms(){
-        const response = await axios.get("http://localhost:5000/api/rooms/owner-room",
+        const response = await axios.get("/api/rooms/owner-room",
           {
             withCredentials: true,
             headers: {

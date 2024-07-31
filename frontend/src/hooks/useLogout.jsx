@@ -10,7 +10,7 @@ const useLogout = () => {
     const logout = async () => {
         setLoading(true)
         try {
-            const response = await axios.get("http://localhost:5000/api/users/logout");
+            const response = await axios.get("/api/users/logout");
             console.log(response);
             localStorage.removeItem("room-user")
             setAuthUser(null);

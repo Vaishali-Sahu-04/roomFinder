@@ -34,7 +34,7 @@ const RoomPage = () => {
   useEffect(() => {
     async function fetchRoomData() {
       try {
-        const response = await fetch(`http://localhost:5000/api/rooms/getroom/${roomId}`,{
+        const response = await fetch(`/api/rooms/getroom/${roomId}`,{
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',

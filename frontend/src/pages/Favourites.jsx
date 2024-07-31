@@ -13,7 +13,7 @@ const Favourites = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("http://localhost:5000/api/users/getFavoriteRooms" ,
+        const response = await axios.get("/api/users/getFavoriteRooms" ,
           {
             withCredentials: true,
             headers: {

@@ -13,7 +13,7 @@ const Reviews = () => {
 
     useEffect(() => {
       async function fetchReviews(){
-        const response = await axios.get(`http://localhost:5000/api/reviews/${roomId}`);
+        const response = await axios.get(`/api/reviews/${roomId}`);
         //console.log(response.data.data);
         setReviews(response.data.data);
       }

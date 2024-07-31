@@ -29,8 +29,8 @@ const Body = () => {
         const searchQuery = queryParams.get('search') || '';
         
         const endpoint = searchQuery 
-          ? `http://localhost:5000/api/rooms/search?query=${searchQuery}` 
-          : `http://localhost:5000/api/rooms`;
+          ? `/api/rooms/search?query=${searchQuery}` 
+          : `/api/rooms`;
 
         const response =await axios.get(endpoint);
         //console.log("response",response.data.data);

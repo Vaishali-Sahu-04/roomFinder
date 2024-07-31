@@ -17,7 +17,7 @@ const useSignUp = () => {
         if(!success) return;
         setLoading(true);
         try {
-            const res = await axios.post("http://localhost:5000/api/users/signup", {
+            const res = await axios.post("/api/users/signup", {
                 fullName,
                 username,
                 password,

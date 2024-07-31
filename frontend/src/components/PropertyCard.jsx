@@ -13,7 +13,7 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
         //console.log(_id);
         try {
           if (!isFavourite) {
-            const res = await axios.post('http://localhost:5000/api/users/addRoomToFavorite', { roomId: _id },
+            const res = await axios.post('/api/users/addRoomToFavorite', { roomId: _id },
                 {
                     withCredentials: true,
                     headers: {
@@ -29,7 +29,7 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
           } 
           else {
             //console.log("Else part in toggling favourite")
-            const res = await axios.post(`http://localhost:5000/api/users/removeFavorite`,{ roomId: _id },
+            const res = await axios.post(`/api/users/removeFavorite`,{ roomId: _id },
             {
                 withCredentials: true,
                 headers: {
