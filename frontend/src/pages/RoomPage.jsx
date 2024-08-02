@@ -64,9 +64,9 @@ const RoomPage = () => {
   }
   return (
     <div className="container mt-5 px-4 flex flex-col items-center justify-center gap-4">
-        <div className='border border-gray-500 font-serif p-4 rounded-md w-8/12'>
+        <div className='border border-gray-500 font-serif p-4 rounded-md lg:w-8/12'>
             <RoomHeader price={propertyData.price} location={propertyData.location} city={propertyData.city} />
-            <div className='flex gap-6'>
+            <div className='lg:flex gap-6'>
                 <Gallery images={propertyData.images} />
                 <div>
                     <PropertyDetails

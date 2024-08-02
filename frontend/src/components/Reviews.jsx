@@ -44,7 +44,7 @@ const Reviews = () => {
     };
 
   return (
-    <div className='border border-gray-500 p-4 rounded-md w-8/12'>
+    <div className='border border-gray-500 p-4 rounded-md lg:w-8/12'>
         <h1 className='font-semibold font-serif text-2xl'>Reviews and Ratings</h1>
         <button className='py-1 border bg-slate-800 text-white px-3  mt-4 rounded-md text-slate-800'
             onClick={() => check()}>

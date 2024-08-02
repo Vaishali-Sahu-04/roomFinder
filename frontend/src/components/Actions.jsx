@@ -6,10 +6,10 @@ const Actions = ({phone, email, available}) => {
   const [showContact, setShowContact] = useState(false);
 
   return (
-    <div className="flex justify-start gap-4 items-center mb-4">
+    <div className="sm:flex justify-start gap-4 items-center mb-4">
       <button className="bg-gray-200 py-2 px-4 rounded">{available ? "Available now":"Unavailable"}</button>
       <button onClick={() => setShowContact(!showContact)}
-        className="bg-red-500 text-white py-2 px-4 rounded">Contact Owner
+        className="bg-red-500 text-white lg:py-2 lg:px-4 p-2 mt-1 rounded">Contact Owner
       </button>
       {showContact && 
         <div className=' font-serif text-sm bg-red-100 p-2 rounded-sm'>

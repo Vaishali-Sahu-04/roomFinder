@@ -7,7 +7,7 @@ const FullGallery = () => {
 
   return (
     <div className="container mx-auto py-4">
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid lg:grid-cols-3 gap-4">
         {images.map((image, index) => (
           <div key={index} className="">
             <img src={image} alt={`Gallery Image ${index + 1}`} className=" w-full h-full" />

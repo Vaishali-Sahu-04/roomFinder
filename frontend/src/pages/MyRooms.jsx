@@ -50,11 +50,11 @@ const MyRooms = () => {
     },[refresh])
    
   return (
-    <div className=' mt-4 p-4'>
+    <div className='mt-4 sm:p-4 p-1'>
       <button onClick={() => navigate('/upload-room')}
-        className=' bg-red-700 font-serif text-white px-4 py-1 rounded'>Upload Room</button>
+        className=' bg-red-700 font-serif text-white text-sm md:text-md sm:px-4 px-1 py-1 rounded'>Upload Room</button>
       <div className="container mx-auto py-4">
-        <div className="grid grid-cols-1 pr-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 pl-2 pr-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {propertyCards.length>0 && propertyCards.map((card) => (
             <Link key={card.id} to={`/room/${card._id}`}><MyRoomCard {...card} setRefresh={setRefresh} /></Link>
         ))}

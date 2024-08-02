@@ -50,7 +50,7 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
     };
 
     return(
-        <div className="max-w-sm w-80 rounded overflow-hidden shadow-lg">
+        <div className=" max-w-[320px] w-full rounded overflow-hidden shadow-lg">
             <img className="w-full h-60" src={images[0]} alt={type} />
             <div className="px-6 py-4">
                 <div className=" flex justify-between text-xl mb-2">
@@ -60,7 +60,7 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
                     {!isFavourite ? 'AddToFavorite' : 'RemoveFavorite'}
                 </button>}
                 </div>
-                <p className="text-gray-700 text-base">₹{price}  |  {area}</p>
+                <p className="text-gray-700 text-base">₹{price}  |  {area} sq.ft</p>
                 <p className="text-gray-700 text-base">{location}</p>
                 <p className="text-gray-700 text-base">Available for {availableFor}</p>
             </div>

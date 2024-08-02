@@ -3,7 +3,7 @@ import React from 'react';
 
 const Overview = ({ carpetArea, type, availableFor, status, age, electricity }) => {
   return (
-    <div className="grid grid-cols-3 gap-4 mb-4">
+    <div className="grid sm:grid-cols-3 gap-4 mb-4">
       <div className=' w-32 text-sm'>
         <p className="text-gray-500">Carpet Area</p>
         <p>{carpetArea} sqft </p>

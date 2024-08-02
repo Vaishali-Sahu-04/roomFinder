@@ -16,7 +16,7 @@ const Gallery = ({images}) => {
 
   return (
     <div className="mb-4">
-      <img className="w-80 h-60" src="/room.jpg" alt="Gallery Image 1" />
+      <img className="w-80 h-60" src={images[0]} alt="Gallery Image 1" />
       {images.length > 1 && (
         <button
           onClick={handleViewMore}
