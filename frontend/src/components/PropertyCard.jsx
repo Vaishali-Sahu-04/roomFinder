@@ -50,7 +50,7 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
     };
 
     return(
-        <div className=" max-w-[320px] w-full rounded overflow-hidden shadow-lg">
+        <div className=" max-w-[420px] w-full rounded overflow-hidden shadow-lg">
             <img className="w-full h-60" src={images[0]} alt={type} />
             <div className="px-6 py-4">
                 <div className=" flex justify-between text-xl mb-2">

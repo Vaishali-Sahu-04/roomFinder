@@ -16,7 +16,7 @@ const LoginPage = () => {
 		await login(inputs)
 	}
  	return (
-        <div className='relative h-[540px] md:h-screen flex justify-center items-center' style={{ backgroundImage: `url('/room.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className='relative h-[540px] h-screen flex justify-center items-center' style={{ backgroundImage: `url('/room.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className='absolute inset-0 bg-cover bg-center backdrop-filter backdrop-blur-3xl' style={{ backgroundImage: `url('/room.jpg')` }}></div>
             <div className='relative border border-black bg-transparent backdrop-filter backdrop-blur-xl rounded-lg w-80 p-6'>
  				<h1 className='text-3xl font-bold text-center text-black'>
