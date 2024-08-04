@@ -52,7 +52,8 @@ const MyRooms = () => {
   return (
     <div className='mt-4 sm:p-4 p-1'>
       <button onClick={() => navigate('/upload-room')}
-        className=' bg-red-700 font-serif text-white text-sm md:text-md sm:px-4 px-1 py-1 rounded'>Upload Room</button>
+        className=' bg-red-700 text-white text-sm md:text-md sm:px-4 p-1 rounded-full font-medium
+        transform hover:scale-105 transition duration-300 ease-in-out hover:bg-white hover:text-red-800 hover:rounded-full'>Upload Room</button>
       <div className="container mx-auto py-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 pl-2 pr-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {propertyCards.length>0 && propertyCards.map((card) => (

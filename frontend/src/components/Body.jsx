@@ -44,7 +44,7 @@ const Body = () => {
   }, [authUser, location.search])
 
   return (
-  <div>
+  <div className=' '>
     <RenderAllRooms propertyCards={propertyCards} authUser={authUser}/>
   </div>
 );

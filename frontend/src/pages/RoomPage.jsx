@@ -63,8 +63,8 @@ const RoomPage = () => {
     return <div className='flex justify-center items-center h-96 font-serif text-3xl'>Oops! Room not found</div>;
   }
   return (
-    <div className="container mt-5 px-4 flex flex-col items-center justify-center gap-4">
-        <div className='border border-gray-500 font-serif p-4 rounded-md lg:w-8/12'>
+    <div className="container mt-5 px-4 flex flex-col text-white items-center justify-center gap-4">
+        <div className='border border-gray-500 bg-gray-700 text-white font-serif p-4 rounded-md lg:w-8/12'>
             <RoomHeader price={propertyData.price} location={propertyData.location} city={propertyData.city} />
             <div className='lg:flex gap-6'>
                 <Gallery images={propertyData.images} />

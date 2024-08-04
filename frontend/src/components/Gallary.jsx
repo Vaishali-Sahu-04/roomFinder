@@ -20,7 +20,7 @@ const Gallery = ({images}) => {
       {images.length > 1 && (
         <button
           onClick={handleViewMore}
-          className="mt-4 text-blue-500 hover:text-blue-700"
+          className="mt-4 text-white hover:text-gray-400"
         >
           +{images.length - 1} Photos
         </button>

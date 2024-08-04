@@ -44,19 +44,20 @@ const Reviews = () => {
     };
 
   return (
-    <div className='border border-gray-500 p-4 rounded-md w-full lg:w-8/12'>
+    <div className='border border-gray-500 p-4 bg-gray-700 rounded-md w-full lg:w-8/12'>
         <h1 className='font-semibold font-serif text-2xl'>Reviews and Ratings</h1>
-        <button className='py-1 border bg-slate-800 text-white px-3  mt-4 rounded-md text-slate-800'
+        <button className='py-1 bg-black  px-3  mt-4 rounded-md text-white
+        transform hover:scale-105 transition duration-300 ease-in-out'
             onClick={() => check()}>
             Write a Review
         </button>
         {showForm && (
             <div className='mt-4'>
             <form onSubmit={handleSubmit}>
-              <div className='mb-2'>
+              <div className='mb-2 '>
                 <label className='block font-semibold'>Role:</label>
                 <select id="property-type" name="role" value={newReview.role} onChange={handleInputChange}
-                className="border border-gray-300 rounded-lg text-sm text-gray-700 p-1 bg-white">
+                className=" rounded-lg text-sm text-white p-1 bg-slate-800">
                   <option value="I own a property here">I own a property here</option>
                   <option value="I currenlt/used to live here">I currenlt/used to live here</option>
                   <option value="I am a local agent">I am a local agent</option>
@@ -70,7 +71,7 @@ const Reviews = () => {
                   name='comment'
                   value={newReview.comment}
                   onChange={handleInputChange}
-                  className='border border-gray-300 outline-none text-sm text-gray-700 p-1 rounded-md w-full'
+                  className=' outline-none text-sm text-white p-1 bg-slate-800 p-1 rounded-md w-full'
                   required
                 ></textarea>
               </div>
@@ -80,7 +81,7 @@ const Reviews = () => {
                 name='rating'
                 value={newReview.rating}
                 onChange={handleInputChange}
-                className='border border-gray-300 text-sm text-gray-700 py-1 px-2 rounded-md w-full'
+                className=' text-sm text-white p-1 bg-slate-800 py-1 px-2 rounded-md w-full'
                 required
               >
                 <option value=''>Select Rating</option>
@@ -93,7 +94,8 @@ const Reviews = () => {
             </div>
               <button
                 type='submit'
-                className='py-1 bg-slate-600 px-3 mt-2 rounded-md text-white'
+                className='py-1 bg-blue-900 font-medium border border-white px-3 mt-2 rounded-md text-white 
+                transform hover:scale-105 transition duration-300 ease-in-out'
               >
                 Submit
               </button>
@@ -103,7 +105,7 @@ const Reviews = () => {
         {
           reviews.length > 0 && (
             reviews.map((review) => (
-              <div className="shadow-md mt-5 pb-2" key={review._id}>
+              <div className="shadow-md shadow-gray-400 mt-5 pb-2" key={review._id}>
                 <div className='flex gap-4'>
                     <img className='w-12 h-12'
                     src="https://static.thenounproject.com/png/363640-200.png" alt="" />

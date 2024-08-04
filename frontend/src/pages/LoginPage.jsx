@@ -40,7 +40,8 @@ const LoginPage = () => {
                             onChange={(e)=>setInputs({...inputs, password:e.target.value})}
                     />
  					
-                    <button className='btn bg-slate-900 rounded-md py-1 px-2 mt-4 text-gray-300 hover:text-white mt-4 border border-slate-700'>
+                    <button className='btn bg-slate-900 rounded-md py-1 px-2 mt-4 text-white hover:text-black hover:bg-slate-400 mt-4 border border-slate-700
+                    transform hover:scale-105 transition duration-300 ease-in-out'>
                     Login
                     </button>
                     <br/>

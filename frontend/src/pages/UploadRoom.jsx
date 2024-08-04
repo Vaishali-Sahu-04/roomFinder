@@ -15,7 +15,7 @@ const UploadRoom = () => {
     await uploadRoom(inputs);
   }
   return (
-    <div className='p-4 w-auto ml-10 '>
+    <div className='p-4 w-auto ml-10 h-full '>
       <h1 className=' font-semibold mb-6 text-blue-950 text-2xl'>Rent your Property</h1>
       <form>
         <div className="flex flex-col text-sm w-64">
