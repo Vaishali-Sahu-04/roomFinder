@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="bg-mid-bg min-h-screen max-h-full">
         <Header />
-        <Routes>
+          <Routes>
             <Route path="/" element={<Body />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
@@ -24,10 +24,11 @@ function App() {
             <Route path="/full-gallery" element={<FullGallery/>} />
             <Route path="/my-rooms" element={<MyRooms/>} />
             <Route path="/favourites" element={<Favourites/>} />
-        </Routes>
+          </Routes>
       <Toaster/>
     </div>
   )
 }
+
 
 export default App
