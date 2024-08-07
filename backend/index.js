@@ -16,11 +16,11 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 const __dirname = path.resolve();
 
-console.log(__dirname);
+const allowedOrigin = process.env.CORS_ORIGIN;
 
 app.use(
   cors({
-    origin: "https://frontend-room-finder.vercel.app",
+    origin: allowedOrigin,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // if you need to handle cookies
     allowedHeaders: "Content-Type,Authorization",
