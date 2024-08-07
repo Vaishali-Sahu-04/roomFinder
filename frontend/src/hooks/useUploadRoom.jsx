@@ -41,7 +41,7 @@ const useUploadRoom = () => {
 		});		
 
 		try {
-			const response = await axios.post("http://localhost:5000/api/rooms/uploadroom", 
+			const response = await axios.post("https://room-finder-api.vercel.app/api/rooms/uploadroom", 
 			formData,
 			{
 				withCredentials: true,

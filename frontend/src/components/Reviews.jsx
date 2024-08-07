@@ -26,7 +26,7 @@ const Reviews = () => {
     }
     const handleSubmit = async(e) => {
         e.preventDefault();
-        const response = await axios.post(`http://localhost:5000/api/reviews/add-review/${roomId}`, newReview, 
+        const response = await axios.post(`https://room-finder-api.vercel.app/api/reviews/add-review/${roomId}`, newReview, 
           {
             withCredentials: true,
             headers: {
