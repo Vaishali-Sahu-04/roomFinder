@@ -21,7 +21,6 @@ const allowedOrigin = process.env.CORS_ORIGIN;
 app.use(
   cors({
     origin: allowedOrigin,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // if you need to handle cookies
     allowedHeaders: "Content-Type,Authorization",
   })
