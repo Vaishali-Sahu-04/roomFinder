@@ -20,7 +20,7 @@ console.log(__dirname);
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://frontend-room-finder.vercel.app",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true, // if you need to handle cookies
     allowedHeaders: "Content-Type,Authorization",
