@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast'
 import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
 
 const useUploadRoom = () => {
 
@@ -42,7 +43,7 @@ const useUploadRoom = () => {
 		});		
 
 		try {
-			const response = await axios.post("https://room-finder-api.vercel.app/api/rooms/uploadroom", 
+			const response = await axios.post(`${apiUrl}/api/rooms/uploadroom`, 
 			formData,
 			{
 				withCredentials: true,
