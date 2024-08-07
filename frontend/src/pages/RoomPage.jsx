@@ -7,6 +7,8 @@ import Gallery from '../components/Gallary';
 import Actions from '../components/Actions';
 import Reviews from '../components/Reviews';
 
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
+
 const RoomPage = () => {
   // const propertyData = {
   //   price: 18500,
@@ -34,7 +36,7 @@ const RoomPage = () => {
   useEffect(() => {
     async function fetchRoomData() {
       try {
-        const response = await fetch(`/api/rooms/getroom/${roomId}`,{
+        const response = await fetch(`${apiUrl}/api/rooms/getroom/${roomId}`,{
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',

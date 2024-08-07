@@ -4,6 +4,8 @@ import toast from 'react-hot-toast';
 import { useAuthContext } from "../context/AuthContext";
 import { useParams } from 'react-router-dom';
 
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
+
 const Reviews = () => {
     const {roomId} = useParams();
     const [reviews, setReviews] = useState([]);
@@ -13,7 +15,7 @@ const Reviews = () => {
 
     useEffect(() => {
       async function fetchReviews(){
-        const response = await axios.get(`/api/reviews/${roomId}`);
+        const response = await axios.get(`${apiUrl}/api/reviews/${roomId}`);
         //console.log(response.data.data);
         setReviews(response.data.data);
       }

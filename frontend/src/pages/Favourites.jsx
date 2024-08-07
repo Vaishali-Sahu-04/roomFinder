@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import RenderAllRooms from '../components/RenderAllRooms';
 import axios from 'axios';
 
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
 
 const Favourites = () => {
 
@@ -13,7 +14,7 @@ const Favourites = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("/api/users/getFavoriteRooms" ,
+        const response = await axios.get(`${apiUrl}/api/users/getFavoriteRooms` ,
           {
             withCredentials: true,
             headers: {

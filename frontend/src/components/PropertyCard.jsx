@@ -3,6 +3,8 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useAuthContext } from "../context/AuthContext";
 
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
+
 const PropertyCard = ({ type, price, area, location, availableFor, images, _id, initialFavourite }) => {
 
     const {authUser, setAuthUser}= useAuthContext();
@@ -13,7 +15,7 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
         //console.log(_id);
         try {
           if (!isFavourite) {
-            const res = await axios.post('/api/users/addRoomToFavorite', { roomId: _id },
+            const res = await axios.post(`${apiUrl}/api/users/addRoomToFavorite`, { roomId: _id },
                 {
                     withCredentials: true,
                     headers: {
@@ -29,7 +31,7 @@ const PropertyCard = ({ type, price, area, location, availableFor, images, _id, 
           } 
           else {
             //console.log("Else part in toggling favourite")
-            const res = await axios.post(`/api/users/removeFavorite`,{ roomId: _id },
+            const res = await axios.post(`${apiUrl}/api/users/removeFavorite`,{ roomId: _id },
             {
                 withCredentials: true,
                 headers: {

@@ -5,7 +5,7 @@ import { ApiError } from "../../../backend/utils/ApiError";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
 const useLogin = () => {
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ const useLogin = () => {
 		if (!success) return;
 		setLoading(true);
 		try {
-			const response = await axios.post("/api/users/login", {
+			const response = await axios.post(`${apiUrl}/api/users/login`, {
                 username,
                 email,
                 password

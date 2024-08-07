@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://room-finder-api.vercel.app",
+        target: "https://localhost:5000",
       },
     },
   },

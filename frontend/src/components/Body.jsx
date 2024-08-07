@@ -15,6 +15,8 @@ import { useLocation } from 'react-router-dom';
 //   },
 // ];
 
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
+
 const Body = () => {
 
   const [propertyCards, setPropertyCards] = useState([]);
@@ -29,8 +31,8 @@ const Body = () => {
         const searchQuery = queryParams.get('search') || '';
         
         const endpoint = searchQuery 
-          ? `/api/rooms/search?query=${searchQuery}` 
-          : `/api/rooms`;
+          ? `${apiUrl}/api/rooms/search?query=${searchQuery}` 
+          : `${apiUrl}/api/rooms`;
 
         const response =await axios.get(endpoint);
         //console.log("response",response.data.data);

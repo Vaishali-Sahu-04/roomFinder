@@ -26,6 +26,9 @@ const PropertyCard = ({ type, rent, area, location, status, imgSrc }) => (
     </div>
 </div>
 );
+
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
+
 const MyRooms = () => {
     const navigate = useNavigate();
 
@@ -35,7 +38,7 @@ const MyRooms = () => {
     useEffect(()=>{
 
       async function fetchMyRooms(){
-        const response = await axios.get("/api/rooms/owner-room",
+        const response = await axios.get(`${apiUrl}/api/rooms/owner-room`,
           {
             withCredentials: true,
             headers: {

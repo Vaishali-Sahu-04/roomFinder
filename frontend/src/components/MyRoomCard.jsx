@@ -4,13 +4,15 @@ import toast from 'react-hot-toast'
 import { Button } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 
+const apiUrl = import.meta.env.VITE_API_ENDPOINT;
+
 const MyRoomCard = ({ type, price, area, location, availableFor, images, _id, setRefresh }) => {
 
   async function handleDelete(e){
     e.preventDefault();
     console.log("response");
     try {
-      const response = await axios.get(`/api/rooms/deleteRoom/${_id}`)
+      const response = await axios.get(`${apiUrl}/api/rooms/deleteRoom/${_id}`)
       //console.log("response");
       if(response.status === 200) 
       {
