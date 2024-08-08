@@ -45,7 +45,7 @@ const MyRooms = () => {
                 'Content-Type': 'application/json'
             }
           });
-          //console.log(response.data.data);
+          console.log(response.data.data);
          const data=response.data.data;
          setPropertyCards(data);
       }
