@@ -5,8 +5,9 @@ const generateTokenAndSetCookie = (userId, res) => {
 
     return res.cookie("jwt",token,{
         httpOnly: true,
-        //sameSite: "strict",
-        // secure: process.env.NODE_ENV !== "development"
+        secure: process.env.NODE_ENV === 'production', // Ensures the cookie is only sent over HTTPS in production
+        sameSite: process.env.SAME_SITE, // Allows the cookie to be sent with cross-origin requests
+        maxAge: 24 * 60 * 60 * 1000 // 1 day expiration
     })
 }
 
