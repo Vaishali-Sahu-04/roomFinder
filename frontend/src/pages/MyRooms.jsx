@@ -36,7 +36,7 @@ const MyRooms = () => {
     const [refresh, setRefresh] = useState(false);
 
     useEffect(()=>{
-
+      console.log("response.data.data");
       async function fetchMyRooms(){
         const response = await axios.get(`${apiUrl}/api/rooms/owner-room`,
           {
