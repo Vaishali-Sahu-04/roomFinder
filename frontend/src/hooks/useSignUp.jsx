@@ -24,7 +24,8 @@ const useSignUp = () => {
                 password,
                 email
             }, {
-                headers: { "Content-Type": "application/json" }
+                headers: { "Content-Type": "application/json" },
+                withCredentials: true
             });
             const data = res.data.data;
             if (data.error) throw new ApiError(400, data.error);
@@ -34,7 +35,7 @@ const useSignUp = () => {
             setAuthUser(data);
             navigate('/');
         } catch (error) {
-            toast.error(error.response?.data?.message || error.message);
+            toast.error("User already exist");
         }
         finally{
             setLoading(false);
